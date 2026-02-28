@@ -1,7 +1,5 @@
 export default async function Vehicules(props: {
-  params: Promise<{
-    id: string;
-  }>;
+  params: { id: string };
 }) {
   const id = await (await props.params).id
   return (
