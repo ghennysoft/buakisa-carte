@@ -5,9 +5,9 @@ import prisma from "../../../../lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = context.params;
+  const { id } = params;
 
   if (!id) {
     return NextResponse.json({ error: "ID manquant" }, { status: 400 });
@@ -29,6 +29,27 @@ export async function GET(
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }
+
+
+// export async function GET(
+//   request: NextRequest,
+//   { params }: { params: { id: string } }
+// ) {
+//   const { id } = params;
+
+//   const card = await prisma.card.findUnique({
+//     where: { id },
+//     include: { user: true, mises: { include: { user: true } } },
+//   });
+
+//   if (!card) {
+//     return NextResponse.json({ error: "Card not found" }, { status: 404 });
+//   }
+
+//   return NextResponse.json(card);
+// }
+
+
 
 
 
