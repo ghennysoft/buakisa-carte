@@ -29,7 +29,7 @@ interface Mise {
 }
 
 export default async function Page({params}: {params: {id: string}}) {
-  const { id } = await params;
+  const { id } = params;
 
   const card = await prisma.card.findUnique({
       where: { id },

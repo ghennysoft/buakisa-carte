@@ -19,9 +19,9 @@ interface Card {
   createdBy   : User,
 }
 
-export default async function Page({params}: {params: Promise<{cardId: string, clientId: string}>}) {
+export default async function Page({params}: {params: {cardId: string, clientId: string}}) {
 
-  const data = await params;
+  const data = params;
   console.log(data);
 
   return (

@@ -7,7 +7,7 @@ export async function GET(
   request: NextRequest,
   context: { params: { id: string } }
 ) {
-  const { id } = context.params; // pas de await
+  const { id } = context.params;
 
   if (!id) {
     return NextResponse.json({ error: "ID manquant" }, { status: 400 });
