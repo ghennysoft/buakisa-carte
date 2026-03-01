@@ -1,7 +1,6 @@
 // "use client";
 
 import Navbar from "@/components/Navbar";
-import { ArrowLeftIcon } from "lucide-react";
 import MiseForm from "../../../../../components/miseForm";
 
 interface User {
@@ -10,18 +9,9 @@ interface User {
   lastname    : string,
 }
 
-interface Card {
-  id          : string,
-  user        : User,
-  devise      : string,
-  montant     : string,
-  maxDays     : string,
-  createdBy   : User,
-}
-
 export default async function Page({params}: {params: {cardId: string, clientId: string}}) {
 
-  const data = params;
+  const data = await params;
   console.log(data);
 
   return (

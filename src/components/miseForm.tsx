@@ -14,12 +14,13 @@ const MiseForm = ({ cardId, clientId}: MiseProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const user = currentUser();
+  console.log(user);
 
   const [form, setForm] = useState({
     user        : clientId,
     card        : cardId,
     montant     : "",
-    createdBy   : user.id,
+    createdBy   : user?.id,
   });
   console.log(form);
 
@@ -34,7 +35,7 @@ const MiseForm = ({ cardId, clientId}: MiseProps) => {
       });
 
       if (res.ok) {
-        router.push('/home');
+        router.push(`/cards/${cardId}`);
       }
       
       setIsLoading(false);

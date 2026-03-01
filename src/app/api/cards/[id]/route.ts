@@ -23,7 +23,7 @@ export async function GET(
 
     return NextResponse.json(card);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

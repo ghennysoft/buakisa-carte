@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
         const data = await prisma.card.create({
             data: {
                 user: { connect: { id: body.user} },
-                userId: body.user,
                 devise : body.devise,
                 montant: Number(body.montant),
                 maxDays: Number(body.maxDays),

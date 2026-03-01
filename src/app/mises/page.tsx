@@ -3,7 +3,6 @@
 import Navbar from "@/components/Navbar";
 import { currentUser } from "@/lib/currentUser";
 import axios from "axios";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface User {
@@ -53,28 +52,23 @@ export default function Page() {
           <h1 className="text-xl"><b>Historique</b></h1>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th className="py-3 px-10">Client(e)</th>
-                <th className="py-3 px-10">Montant</th>
-                <th className="py-3 px-10">Date</th>
-                {/* <th className="py-3 px-10">Actions</th> */}
-              </tr>
+          <table className="table-auto w-full bg-white border border-gray-300">
+            <thead className="bg-fuchsia-900 text-white">
+                <tr>
+                    <th className="border border-gray-300 px-4 py-2">#</th>
+                    <th className="border border-gray-300 px-4 py-2">Client</th>
+                    <th className="border border-gray-300 px-4 py-2">Montant</th>
+                    <th className="border border-gray-300 px-4 py-2">Date</th>
+                </tr>
             </thead>
             <tbody>
               {
                 mises?.map((mise, index) => (
-                  <tr key={mise?.id}>
-                    <td>{index + 1}</td>
-                    <td className="py-3 px-5 text-center">{mise?.user?.firstname} {mise?.user?.lastname}</td>
-                    <td className="py-3 px-5 text-center">{mise?.montant}</td>
-                    <td className="py-3 px-5 text-center">{String(new Date(mise?.createdAt).toLocaleDateString())}</td>
-                    {/* <td className="py-3 px-5 text-center">
-                      <button>Edit</button>&nbsp;-&nbsp; 
-                      <button>Delete</button>
-                    </td> */}
+                  <tr key={mise?.id} className="hover:bg-green-100">
+                    <td className="border border-gray-300 px-4 py-2">{index+1}</td>
+                    <td className="border border-gray-300 px-4 py-2">{mise.user.firstname} {mise.user.lastname}</td>
+                    <td className="border border-gray-300 px-4 py-2">{mise.montant}</td>
+                    <td className="border border-gray-300 px-4 py-2">{String(new Date(mise?.createdAt).toLocaleDateString())}</td>
                   </tr>
                 ))
               }

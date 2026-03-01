@@ -11,9 +11,9 @@ export const GoBackBtn = () => {
   return (
     <button 
       onClick={goBack}
-      className="py-1 px-2 bg-fuchsia-900 text-white rounded-2xl cursor-pointer"
+      className="p-1 bg-fuchsia-900 text-white rounded-2xl cursor-pointer mr-1"
     >
-      <ArrowLeftIcon />
+      <ArrowLeftIcon size={18} />
     </button>
   );
 };

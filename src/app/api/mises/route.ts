@@ -18,9 +18,7 @@ export async function POST(request: NextRequest) {
         const data = await prisma.mise.create({
             data: {
                 user: { connect: { id: body.user} },
-                userId: body.user,
                 card: { connect: { id: body.card} },
-                cardId: body.card,
                 montant: Number(body.montant),
                 createdBy: body.createdBy,
             }

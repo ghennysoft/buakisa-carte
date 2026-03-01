@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         // revalidatePath("/user")
         return NextResponse.json(data, {status: 201});
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return NextResponse.json({ error }, { status: 500 });
     }
 }

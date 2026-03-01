@@ -1,29 +1,24 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import { ArrowLeftIcon } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { currentUser } from "../../../lib/currentUser";
+import { GoBackBtn } from "@/components/goback";
 
 interface User {
   id          : string,
   firstname   : string,
   lastname    : string,
-}
-
-interface Card {
-  id          : string,
-  user        : User,
-  devise      : string,
-  montant     : string,
-  maxDays     : string,
-  createdBy   : User,
+  role    : string,
 }
 
 export default function Page() {
   const [users, setUsers] = useState<User[]>([]);
+  console.log(users);
+  const filtredUsers = users.filter(u => u.role === "Client");
+  console.log(filtredUsers);
+
   const [dataLoading, setDataLoading] = useState(false);
   const user = currentUser();
 
@@ -36,11 +31,12 @@ export default function Page() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
-    firstname        : "",
-    lastname      : "",
-    code     : "",
-    points     : "",
-    phoneNumber   : "",
+    id          : "",
+    user        : "",
+    devise      : "",
+    montant     : "",
+    maxDays     : "",
+    createdBy   : user?.id,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,14 +56,11 @@ export default function Page() {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      // console.log(error);
+      console.log(error);
     }
   };
 
   const router = useRouter();
-  const goBack = () => {
-    router.back();
-  };
 
   if(dataLoading) return <p>Chargement...</p>
 
@@ -77,12 +70,7 @@ export default function Page() {
       <main className="w-full p-3">
         <form onSubmit={handleSubmit} className="w-full bg-white rounded-xl">
           <div className="flex items-center p-2 mb-3 gap-2">
-            <button 
-              onClick={goBack}
-              className="py-1 px-2 bg-fuchsia-900 text-white rounded-2xl cursor-pointer"
-            >
-              <ArrowLeftIcon />
-            </button>
+            <GoBackBtn />
             <h3 className="text-3xl mb-5 mt-5">Nouvelle carte</h3>
           </div>
 
@@ -97,7 +85,7 @@ export default function Page() {
           >
             <option value="">--- Choisissez le client ---</option>
             {
-              users?.map(user => (
+              filtredUsers?.map(user => (
                 <option key={user?.id} value={user?.id}>{user?.firstname} {user?.lastname}</option>
               ))
             }

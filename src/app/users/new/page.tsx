@@ -43,7 +43,7 @@ export default function Page() {
       });
 
       if (res.ok) {
-        router.push('/home');
+        router.push('/users');
       }
       
       setIsLoading(false);

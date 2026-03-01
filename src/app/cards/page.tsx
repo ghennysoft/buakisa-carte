@@ -1,5 +1,6 @@
 "use client";
 
+import { GoBackBtn } from "@/components/goback";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
 import Link from "next/link";
@@ -40,37 +41,31 @@ export default function Page() {
       <Navbar />
       <main className="p-2">
         <div className="flex justify-between items-center p-2 mb-3">
-          <h1 className="text-xl"><b>TOUTES LES CARTES</b></h1>
-          <Link href={"/cards/new"} className="py-1 px-4 bg-fuchsia-900 text-white rounded-2xl cursor-pointer">Ajouter</Link>
+          <div className="flex justify-between items-center">
+            <GoBackBtn />
+            <h1 className="text-xl"><b>TOUTES LES CARTES</b></h1>
+          </div>
+          <Link href={"/cards/new"} className="py-1 px-3 bg-gray-400 text-white rounded-2xl cursor-pointer">+</Link>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th className="py-3 px-10">Nom</th>
-                <th className="py-3 px-10">Montant</th>
-                <th className="py-3 px-10">Durée</th>
-                {/* <th className="py-3 px-10">Actions</th> */}
-              </tr>
+          <table className="table-auto w-full bg-white border border-gray-300">
+            <thead className="bg-fuchsia-900 text-white">
+                <tr>
+                    <th className="border border-gray-300 px-4 py-2">#</th>
+                    <th className="border border-gray-300 px-4 py-2">Nom</th>
+                    <th className="border border-gray-300 px-4 py-2">Montant</th>
+                    <th className="border border-gray-300 px-4 py-2">Durée</th>
+                </tr>
             </thead>
             <tbody>
               {
                 cards?.map((card, index) => (
-                  <tr key={card?.id}>
-                    <td>{index + 1}</td>
-                    <td className="py-3 px-5 text-center">
-                      <Link href={`/cards/${card?.id}`}>
-                        {card?.user?.firstname} {card?.user?.lastname}
-                      </Link>
-                    </td>
-                    <td className="py-3 px-5 text-center">{card?.montant} {card?.devise === 'CDF' ? ' Fc' : ' $'}</td>
-                    <td className="py-3 px-5 text-center">{card?.maxDays} jours</td>
-                    {/* <td className="py-3 px-5">
-                      <button>Edit</button>&nbsp;-&nbsp; 
-                      <button>Delete</button>
-                    </td> */}
-                  </tr>
+                <tr key={card?.id} className="hover:bg-green-100">
+                    <td className="border border-gray-300 px-4 py-2">{index+1}</td>
+                    <td className="border border-gray-300 px-4 py-2">{card.user.firstname} {card.user.lastname}</td>
+                    <td className="border border-gray-300 px-4 py-2">{card.montant}</td>
+                    <td className="border border-gray-300 px-4 py-2">{card.maxDays} jours</td>
+                </tr>
                 ))
               }
             </tbody>
