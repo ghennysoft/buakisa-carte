@@ -1,14 +1,11 @@
-"use server"
-
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "../../../lib/prisma"
-// import { revalidatePath } from "next/cache";
+import prisma from "../../../lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  const { id } = await context.params; // ⚠️ ici on attend la Promise
 
   const card = await prisma.card.findUnique({
     where: { id },
@@ -23,26 +20,25 @@ export async function GET(
 }
 
 export async function POST(request: NextRequest) {
-    const body = await request.json();
-    try {
-        const data = await prisma.card.create({
-            data: {
-                user: { connect: { id: body.user} },
-                userId: body.user,
-                devise : body.devise,
-                montant: Number(body.montant),
-                maxDays: Number(body.maxDays),
-                createdBy: body.createdBy,
-            }
-        });
+  const body = await request.json();
+  try {
+    const data = await prisma.card.create({
+      data: {
+        user: { connect: { id: body.user } },
+        userId: body.user,
+        devise: body.devise,
+        montant: Number(body.montant),
+        maxDays: Number(body.maxDays),
+        createdBy: body.createdBy,
+      },
+    });
 
-        // revalidatePath("/card")
-        return NextResponse.json(data, {status: 201});
-    } catch (error) {
-        // console.error(error);
-        return NextResponse.json({ error }, { status: 500 });
-    }
+    return NextResponse.json(data, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
 }
+
 
 // export async function PUT(request: NextRequest, {params}: {params: {id: string}}) {
 //     const body = await request.json();
