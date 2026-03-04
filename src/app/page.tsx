@@ -10,6 +10,8 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    console.log(formData.get('phoneNumber'))
+    console.log(formData.get('password'))
     setIsLoading(true);
 
     try {
@@ -21,15 +23,16 @@ export default function Home() {
       const data = await res.json();
 
       if (res.ok) {
-        alert(data.message);
+        console.log(data.message);
         // tu peux stocker l’utilisateur dans localStorage si besoin
         localStorage.setItem("user", JSON.stringify(data.user));
         router.push('/home');
       } else {
-        alert(data.error);
+        // alert(data.error);
+        console.log(data.error);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
