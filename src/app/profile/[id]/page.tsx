@@ -2,14 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import prisma from "../../../lib/prisma";
-import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
-
-interface User {
-  id: string;
-  firstname: string;
-  lastname: string;
-}
 
 export default async function Page({params}: {params: {id: string}}) {
   const { id } = await params;
