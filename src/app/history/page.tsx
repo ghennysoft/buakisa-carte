@@ -51,8 +51,8 @@ export default function History() {
         const getMises = async () => {
             try {
                 const res = await axios.get('/api/mises');
-                const miseAgent = res?.data?.filter(data => data?.createdBy === user?.id);
-                const miseClient = res?.data?.filter(data => data?.user.id === user?.id);
+                const miseAgent = res?.data?.filter((data: any) => data?.createdBy === user?.id);
+                const miseClient = res?.data?.filter((data: any) => data?.user.id === user?.id);
                 if(user?.role === 'Agent') {
                     console.log(1);
                     setMises(miseAgent);
