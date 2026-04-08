@@ -3,6 +3,9 @@
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import prisma from "../../../lib/prisma";
+import { GoBackBtn } from "@/components/goback";
+import { Plus } from "lucide-react";
+import Footer from "@/components/Footer";
 
 interface User {
   id: string;
@@ -41,41 +44,44 @@ export default async function Page({params}: {params: {id: string}}) {
   return (
     <div>
       <Navbar />
-      <main className="p-2">
+      <main className="p-2 mb-8">
         <div className="flex justify-between items-center p-2 mb-3">
-          <h1 className="text-xl">
-            <b>Carte {card?.user?.firstname} {card?.user?.lastname}</b>
-          </h1>
-          <Link
-            href={`/mises/new/${card?.id}/${card?.user?.id}`}
-            className="py-1 px-4 bg-fuchsia-900 text-white rounded-2xl cursor-pointer"
-          >
-            Ajouter
-          </Link>
+          <div className="flex justify-between items-center p-2">
+            <div className="flex justify-between items-center">
+              <GoBackBtn />
+              <h1 className="text-xl"><b>Carte {card?.user?.firstname} {card?.user?.lastname}</b></h1>
+            </div>
+          </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full bg-white border border-gray-300">
-            <thead className="bg-fuchsia-900 text-white">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2">#</th>
-                <th className="border border-gray-300 px-4 py-2">Montant</th>
-                <th className="border border-gray-300 px-4 py-2">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                card?.mises?.map((mise, index) => (
-                <tr key={mise.id} className="hover:bg-green-100">
-                    <td className="border border-gray-300 px-4 py-2">{index+1}</td>
-                    <td className="border border-gray-300 px-4 py-2">{mise.montant}</td>
-                    <td className="border border-gray-300 px-4 py-2">{String(new Date(mise?.createdAt).toLocaleDateString())}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+
+        <div className="flex justify-between my-4">
+            <Link href={`/mises/new/${card?.id}/${card?.user?.id}`} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 hover:text-white transition-colors flex-1 justify-center">
+                <Plus />
+                <span>Ajouter un nouvelle mise</span>
+            </Link>
         </div>
+
+        {
+          card?.mises?.length !== 0
+          ? <div className="grid grid-cols-1 gap-3">
+            {
+              card?.mises?.map((mise) => (
+                <div key={mise?.id} className="flex justify-between items-center shadow-lg rounded-lg p-5">
+                    <div className="user">
+                      <span className="text-xl">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</span> <br />
+                      {/* <span className ="text-sm text-gray-400 text-center">Par {mise?.createdBy}</span> */}
+                    </div>
+                    <div className="amount">
+                      <span className="text-xl font-semibold text-center">{mise?.montant} {card.devise}</span>
+                    </div>
+                </div>
+              ))
+            }
+            </div>
+          : <span className="text-gray-400">Aucune mise pour l&apos;instant</span>  
+        }
       </main>
+      <Footer />
     </div>
   );
 }

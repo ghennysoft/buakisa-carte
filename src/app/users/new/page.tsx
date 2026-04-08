@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { currentUser } from "@/lib/currentUser";
 import { GoBackBtn } from "@/components/goback";
+import Footer from "@/components/Footer";
 
 // interface User {
 //   firstname   : string,
@@ -58,7 +59,7 @@ export default function Page() {
   return (
     <div className="">  
       <Navbar />
-      <main className="w-full p-3">
+      <main className="w-full p-3 mb-4">
         <form onSubmit={handleSubmit} className="w-full bg-white rounded-xl">
           <div className="flex items-center p-2 mb-3 gap-2">
             <GoBackBtn />
@@ -69,7 +70,7 @@ export default function Page() {
           <select 
             name="role" 
             id="role" 
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.role} 
             onChange={(e)=>setForm({...form, role: e.target.value})}
             required
@@ -84,7 +85,7 @@ export default function Page() {
           <input 
             type="text" 
             name="firstname"
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.firstname} 
             onChange={(e)=>setForm({...form, firstname: e.target.value})}
             required
@@ -94,7 +95,7 @@ export default function Page() {
           <input 
             type="text" 
             name="lastname"
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.lastname} 
             onChange={(e)=>setForm({...form, lastname: e.target.value})}
             required
@@ -104,7 +105,7 @@ export default function Page() {
           <input 
             type="text" 
             name="phoneNumber"
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.phoneNumber} 
             onChange={(e)=>setForm({...form, phoneNumber: e.target.value})}
             required
@@ -114,7 +115,7 @@ export default function Page() {
           <select 
             name="gender" 
             id="gender" 
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.gender} 
             onChange={(e)=>setForm({...form, gender: e.target.value})}
             required
@@ -128,7 +129,7 @@ export default function Page() {
           <input 
             type="password"
             name="password"
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.password} 
             onChange={(e)=>setForm({...form, password: e.target.value})}
             required
@@ -145,13 +146,14 @@ export default function Page() {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-fuchsia-900 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full bg-indigo-700 text-white cursor-pointer"
               >
                 Créer l&apos;utilisateur
               </button>
           }
         </form>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export const GoBackBtn = () => {
   return (
     <button 
       onClick={goBack}
-      className="p-1 bg-fuchsia-900 text-white rounded-2xl cursor-pointer mr-1"
+      className="p-2 bg-gray-300 text-gray-700 rounded-2xl cursor-pointer mr-1"
     >
       <ArrowLeftIcon size={18} />
     </button>

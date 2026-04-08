@@ -4,6 +4,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { currentUser } from "@/lib/currentUser";
+import { GoBackBtn } from "./goback";
 
 interface MiseProps {
   cardId: string
@@ -54,12 +55,7 @@ const MiseForm = ({ cardId, clientId}: MiseProps) => {
     <>
       <form onSubmit={handleSubmit} className="w-full bg-white rounded-xl">
           <div className="flex items-center p-2 mb-3 gap-2">
-            <button 
-              onClick={goBack}
-              className="py-1 px-2 bg-fuchsia-900 text-white rounded-2xl cursor-pointer"
-            >
-              <ArrowLeftIcon />
-            </button>
+            <GoBackBtn />
             <h3 className="text-3xl mb-5 mt-5">Nouvelle mise</h3>
           </div>
 
@@ -67,7 +63,7 @@ const MiseForm = ({ cardId, clientId}: MiseProps) => {
           <input 
             type="number" 
             name="montant"
-            className="block p-2 my-3 rounded-xl w-full border"
+            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
             value={form.montant} 
             onChange={(e)=>setForm({...form, montant: e.target.value})}
             required
@@ -84,7 +80,7 @@ const MiseForm = ({ cardId, clientId}: MiseProps) => {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-fuchsia-900 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full bg-indigo-700 text-white cursor-pointer"
               >
                 Ajouter
               </button>

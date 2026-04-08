@@ -1,8 +1,10 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import { GoBackBtn } from "@/components/goback";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
+import { Plus, User } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -34,41 +36,37 @@ export default function Page() {
   return (
     <div className="">
       <Navbar />
-      <main className="p-2">
-        <div className="flex justify-between items-center p-2 mb-3">
+      <main className="p-2 mb-8">
+        <div className="flex justify-between items-center p-2">
           <div className="flex justify-between items-center">
             <GoBackBtn />
-            <h1 className="text-xl"><b>TOUS LES UTILISATEURS</b></h1>
+            <h1 className="text-lg"><b>TOUS LES UTILISATEURS</b></h1>
           </div>
-          <Link href={"/users/new"} className="py-1 px-3 bg-gray-400 text-white rounded-2xl cursor-pointer">+</Link>
         </div>
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full bg-white border border-gray-300">
-            <thead className="bg-fuchsia-900 text-white">
-              <tr>
-                <th className="border border-gray-300 px-4 py-2">#</th>
-                <th className="border border-gray-300 px-4 py-2">Nom</th>
-                <th className="border border-gray-300 px-4 py-2">Téléphone</th>
-                <th className="border border-gray-300 px-4 py-2">Genre</th>
-                <th className="border border-gray-300 px-4 py-2">Rôle</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                users?.map((user, index) => (
-                  <tr key={user?.id} className="hover:bg-green-100">
-                    <td className="border border-gray-300 px-4 py-2">{index+1}</td>
-                    <td className="border border-gray-300 px-4 py-2">{user.firstname} {user.lastname}</td>
-                    <td className="border border-gray-300 px-4 py-2">{user.phoneNumber}</td>
-                    <td className="border border-gray-300 px-4 py-2">{user.gender}</td>
-                    <td className="border border-gray-300 px-4 py-2">{user.role}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+
+        <div className="flex justify-between my-4">
+            <Link href={"/users/new"} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 hover:text-white transition-colors flex-1 justify-center">
+                <Plus />
+                <span>Créer un nouvel utilisateur</span>
+            </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          {
+            users?.map((user) => (
+              <Link href={`/users/${user?.id}`} key={user?.id} className="flex flex-col justify-center items-center shadow-lg rounded-lg p-3 hover:bg-gray-200">
+                <div className="w-20 h-20 rounded-full bg-indigo-100 text-indigo-400 flex justify-center items-center mb-4">
+                  <User size={50} />
+                </div>
+                <span className="text-lg font-semibold text-center">{user?.firstname} {user?.lastname}</span>
+                <span className="text-sm text-center">{user?.phoneNumber}</span>
+                <span className="text-sm text-center">{user?.gender}</span>
+              </Link>
+            ))
+          }
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function Page() {
           <select 
             name="user" 
             id="user" 
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
+            className="block p-2 my-3 rounded-xl w-full border"
             value={form.user} 
             onChange={(e)=>setForm({...form, user: e.target.value})}
             required
@@ -96,7 +96,7 @@ export default function Page() {
           <select 
             name="devise" 
             id="devise" 
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
+            className="block p-2 my-3 rounded-xl w-full border"
             value={form.devise} 
             onChange={(e)=>setForm({...form, devise: e.target.value})}
             required
@@ -110,7 +110,7 @@ export default function Page() {
           <input 
             type="number" 
             name="montant"
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
+            className="block p-2 my-3 rounded-xl w-full border"
             value={form.montant} 
             onChange={(e)=>setForm({...form, montant: e.target.value})}
             required
@@ -120,7 +120,7 @@ export default function Page() {
           <input 
             type="number" 
             name="maxDays"
-            className="block w-full p-2 my-3 border border-gray-300 py-3 px-4 rounded-xl"
+            className="block p-2 my-3 rounded-xl w-full border"
             value={form.maxDays} 
             onChange={(e)=>setForm({...form, maxDays: e.target.value})}
             required
@@ -137,7 +137,7 @@ export default function Page() {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-indigo-700 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full bg-fuchsia-900 text-white cursor-pointer"
               >
                 Créer la carte
               </button>

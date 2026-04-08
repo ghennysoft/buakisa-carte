@@ -1,9 +1,10 @@
 "use client"
 
 import Footer from "@/components/Footer";
+import { GoBackBtn } from "@/components/goback";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
-import { BadgeInfo, CreditCard, History, SquareDotIcon, User, Users2 } from "lucide-react";
+import { SquareDotIcon, User, Users2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -32,7 +33,7 @@ interface Mise {
   createdAt   : string,
 }
 
-export default function Home() {
+export default function History() {
     const [user, setUser] = useState<User | null>(null);
     useEffect(()=>{
         const getUser = () => {
@@ -76,99 +77,34 @@ export default function Home() {
                 <div className="font-sans antialiased text-gray-800">
                     <Navbar />
                     <main className="container lg:px-40 pb-20 mb-10">
-                        <div id="appContent" className="px-4 pt-4">
-                            <h3 className="font-bold text-lg">Trableau de bord Admin</h3>
-                            <div className="grid grid-cols-3 gap-4 mt-5" id="serviceCategories">
-                                <Link href={"/users"} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-2">
-                                        <Users2 />
-                                    </div>
-                                    <span className="text-xs font-medium text-center">Utilisateurs</span>
-                                </Link>
-                                
-                                <Link href={"/cards"} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2">
-                                        <CreditCard />
-                                    </div>
-                                    <span className="text-xs font-medium text-center">cares</span>
-                                </Link>
-                                
-                                <Link href={`/history`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2">
-                                        <History />
-                                    </div>
-                                    <span className="text-xs font-medium text-center">Historiques</span>
-                                </Link>
-                                
-                                <Link href={`/users/${user?.id}`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-2">
-                                        <User />
-                                    </div>
-                                    <span className="text-xs font-medium text-center">Profile</span>
-                                </Link>
-                                
-                                <Link href={``} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
-                                        <BadgeInfo />
-                                    </div>
-                                    <span className="text-xs font-medium text-center">A propos</span>
-                                </Link>
-                                
-                                {/* <button className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
-                                        <i className="fas fa-graduation-cap text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-center">Éducation</span>
-                                </button>
-                                
-                                <button className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mb-2">
-                                        <i className="fas fa-hands-helping text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-center">ONG</span>
-                                </button>
-                                
-                                <button className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                                    <div className="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mb-2">
-                                        <i className="fas fa-concierge-bell text-xl"></i>
-                                    </div>
-                                    <span className="text-xs font-medium text-center">Services</span>
-                                </button> */}
-                            </div>
-                            
-                            <div id="subOptionsContainer" className="hidden mt-4 border-t pt-4">
-                                <h4 id="subOptionsTitle" className="font-medium mb-3 text-indigo-600"></h4>
-                                <div id="subOptionsContent" className="grid grid-cols-3 gap-3"></div>
+                        <div className="flex justify-between items-center p-2">
+                            <div className="flex justify-between items-center">
+                            <GoBackBtn />
+                            <h1 className="text-lg"><b>Historique</b></h1>
                             </div>
                         </div>
-
-                        <div className="px-4 mt-6">
-                            <div className="flex justify-between items-center mb-3">
-                                <h3 className="font-bold text-lg">Transactions récentes</h3>
-                                <button className="text-indigo-600 text-sm font-medium">Voir tout</button>
-                            </div>
-                            
-                            <div className="space-y-3">
-                                {
-                                    mises?.map(mise=>(
-                                        <div key={mise?.id} className="flex items-center p-2 hover:bg-gray-200 rounded-lg">
-                                            <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
-                                                <SquareDotIcon />
-                                            </div>
-                                            <div className="flex-1">
-                                                <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
-                                                <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-lg font-medium">{mise?.montant} {mise?.card?.devise}</p>
-                                                {/* <p className="text-xs text-gray-500">{mise?.createdBy}</p> */}
-                                            </div>
+                        
+                        <div className="space-y-3">
+                            {
+                                mises?.map(mise=>(
+                                    <div key={mise?.id} className="flex items-center p-2 hover:bg-gray-200 rounded-lg">
+                                        <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
+                                            <SquareDotIcon />
                                         </div>
-                                    ))
-                                }
-                            </div>
+                                        <div className="flex-1">
+                                            <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
+                                            <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-lg font-medium">{mise?.montant} {mise?.card?.devise}</p>
+                                            {/* <p className="text-xs text-gray-500">{mise?.createdBy}</p> */}
+                                        </div>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </main>
+                    <Footer />
                 </div>
             </div>
         );
