@@ -28,7 +28,7 @@ export type Gender = (typeof Gender)[keyof typeof Gender]
 
 export const Devise = {
   CDF: 'CDF',
-  DOL: 'DOL'
+  USD: 'USD'
 } as const
 
 export type Devise = (typeof Devise)[keyof typeof Devise]

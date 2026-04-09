@@ -48,7 +48,7 @@ export default function Page() {
 
   return (
     <div className="">
-      <Navbar />
+     <Navbar />
       <main className="p-2 mb-8">
         <div className="flex gap-2 items-center my-3">
           <GoBackBtn />
@@ -56,7 +56,7 @@ export default function Page() {
         </div>
         <div className="overflow-x-auto">
           <table className="table-auto w-full bg-white border border-gray-300">
-            <thead className="bg-fuchsia-900 text-white">
+            <thead className="bg-indigo-200 text-white">
                 <tr>
                     <th className="border border-gray-300 px-4 py-2">#</th>
                     <th className="border border-gray-300 px-4 py-2">Client</th>

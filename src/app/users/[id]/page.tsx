@@ -22,7 +22,7 @@ export default async function Page({params}: {params: {id: string}}) {
   return (
     <div>
       <Navbar />
-      <main className="p-2 mb-8">
+      <main className="p-2 mb-10">
         <div className="flex justify-between items-center p-2">
           <div className="flex justify-between items-center">
             <GoBackBtn />

@@ -18,7 +18,6 @@ import Footer from "@/components/Footer";
 // }
 
 export default function Page() {
-  const [dataLoading, setDataLoading] = useState(false);
   const user = currentUser();
   const router = useRouter();
 
@@ -54,12 +53,11 @@ export default function Page() {
     }
   };
 
-  if(dataLoading) return <p>Chargement...</p>
 
   return (
     <div className="">  
       <Navbar />
-      <main className="w-full p-3 mb-4">
+      <main className="w-full p-3 mb-10">
         <form onSubmit={handleSubmit} className="w-full bg-white rounded-xl">
           <div className="flex items-center p-2 mb-3 gap-2">
             <GoBackBtn />
@@ -77,8 +75,6 @@ export default function Page() {
           >
             <option value="">--- Choisissez le role ---</option>
             <option value="Client">Client</option>
-            <option value="Agent">Agent</option>
-            <option value="Admin">Administrateur</option>
           </select>
 
           <label htmlFor="firstname">Prénom</label>

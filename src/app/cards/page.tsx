@@ -40,7 +40,7 @@ export default function Page() {
   return (
     <div className="">
       <Navbar />
-      <main className="p-2 mb-8">
+      <main className="p-2 mb-10">
         <div className="flex justify-between items-center p-2">
           <div className="flex justify-between items-center">
             <GoBackBtn />
@@ -66,7 +66,7 @@ export default function Page() {
                       <span className="text-sm text-gray-400 text-center">Le 04/04/2026</span>
                     </div>
                     <div className="amount">
-                      <span className="text-2xl font-semibold text-center">{card?.montant} {card?.devise}</span>
+                      <span className="text-2xl font-semibold text-center">{card?.montant}{card?.devise === "USD" ? "$" : "Fc"}</span>
                     </div>
                 </Link>
               ))

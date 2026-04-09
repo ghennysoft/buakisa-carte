@@ -68,7 +68,7 @@ export default function Page() {
   return (
     <div className="">  
       <Navbar />
-      <main className="w-full p-3 mb-4">
+      <main className="w-full p-3 mb-10">
         <form onSubmit={handleSubmit} className="w-full bg-white rounded-xl">
           <div className="flex items-center p-2 mb-3 gap-2">
             <GoBackBtn />

@@ -20,12 +20,23 @@ interface User {
 }
 
 export default function Page() {
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(()=>{
+      const getUser = () => {
+          const user = localStorage.getItem("user");
+          if(user){
+              setUser(JSON.parse(user));
+          }
+      }
+      getUser();
+  }, [])
+
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => { 
     const getUsers = async () => {
       try {
         const res = await axios.get('/api/users');
-        setUsers(res.data);
+        setUsers(res?.data)
       } catch (error) {
         // console.log(error)      
       }
@@ -33,27 +44,38 @@ export default function Page() {
     getUsers();
   }, []);
 
+  let usersData = null;
+  if(user?.role && users) {
+    const agentData = users?.filter((data: any) => data?.role === "Client");
+    console.log(agentData);
+    if(user?.role === "Agent") {
+      usersData = agentData;
+    } else {
+      usersData = users;
+    }
+  }
+
   return (
     <div className="">
       <Navbar />
-      <main className="p-2 mb-8">
+      <main className="p-2 mb-10">
         <div className="flex justify-between items-center p-2">
           <div className="flex justify-between items-center">
             <GoBackBtn />
-            <h1 className="text-lg"><b>TOUS LES UTILISATEURS</b></h1>
+            <h1 className="text-lg"><b>TOUS LES CLIENTS</b></h1>
           </div>
         </div>
 
         <div className="flex justify-between my-4">
             <Link href={"/users/new"} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 hover:text-white transition-colors flex-1 justify-center">
                 <Plus />
-                <span>Créer un nouvel utilisateur</span>
+                <span>Créer un nouveau client</span>
             </Link>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
           {
-            users?.map((user) => (
+            usersData?.map((user) => (
               <Link href={`/users/${user?.id}`} key={user?.id} className="flex flex-col justify-center items-center shadow-lg rounded-lg p-3 hover:bg-gray-200">
                 <div className="w-20 h-20 rounded-full bg-indigo-100 text-indigo-400 flex justify-center items-center mb-4">
                   <User size={50} />

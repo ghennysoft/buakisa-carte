@@ -44,7 +44,7 @@ export default async function Page({params}: {params: {id: string}}) {
   return (
     <div>
       <Navbar />
-      <main className="p-2 mb-8">
+      <main className="p-2 mb-10">
         <div className="flex justify-between items-center p-2 mb-3">
           <div className="flex justify-between items-center p-2">
             <div className="flex justify-between items-center">
@@ -72,7 +72,7 @@ export default async function Page({params}: {params: {id: string}}) {
                       {/* <span className ="text-sm text-gray-400 text-center">Par {mise?.createdBy}</span> */}
                     </div>
                     <div className="amount">
-                      <span className="text-xl font-semibold text-center">{mise?.montant} {card.devise}</span>
+                      <span className="text-xl font-semibold text-center">{mise?.montant}{card?.devise === "CDF" ? "Fc" : "$"}</span>
                     </div>
                 </div>
               ))
