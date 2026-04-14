@@ -3,6 +3,8 @@ import prisma from "../../../lib/prisma";
 import { User } from "lucide-react";
 import { GoBackBtn } from "@/components/goback";
 import Footer from "@/components/Footer";
+import { currentUser } from "@/lib/currentUser";
+import Link from "next/link";
 
 interface User {
   id: string;
@@ -30,9 +32,9 @@ export default async function Page({params}: {params: {id: string}}) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center p-3">
-          <div className="w-25 h-25 rounded-full bg-indigo-100 text-indigo-400 flex justify-center items-center mb-7">
-            <User size={70} />
+        <div className="flex flex-col justify-center p-3">
+          <div className="w-20 h-20 rounded-full bg-indigo-100 items-center text-indigo-400 flex justify-center mb-7">
+            <User size={50} />
           </div>
           <table className="text-lg text-gray-600">
             <tbody>
@@ -54,6 +56,13 @@ export default async function Page({params}: {params: {id: string}}) {
               </tr>
             </tbody>
           </table>
+          {
+            user?.role === "Admin" && 
+              <Link 
+                href={`/users/edit/${user?.id}`} 
+                className="w-2/3 py-2 px-5 my-10 text-center rounded-xl bg-indigo-700 text-white cursor-pointer"
+              >Modifier le profile</Link>
+          }
         </div>
       </main>
       <Footer />

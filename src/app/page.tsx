@@ -13,6 +13,7 @@ export default function Home() {
   }, [])
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +36,7 @@ export default function Home() {
         router.replace('/home');
       } else {
         // alert(data.error);
-        console.log(data.error);
+       setError(data.error);
       }
     } catch (error) {
       console.log(error);
@@ -46,11 +47,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center p-2 mt-6">
-      <form onSubmit={handleSubmit} className="w-full border-gray-500 shadow-lg p-7 m-2 rounded-xl">
+      <form onSubmit={handleSubmit} className="w-full border-gray-500 p-7 m-2 rounded-xl">
         <div className="flex flex-col justify-center items-center">
           <Wallet size={50} className="text-indigo-700" />
-          <h1 className="text-4xl font-bold text-indigo-700 text-center mb-5">Buakisa Carte</h1>
+          <h1 className="text-4xl font-bold text-indigo-700 text-center mb-5">B Carte</h1>
           <span className="text-lg text-center mb-7">Connectez-vous</span>
+          {error && <span className="text-sm text-center text-red-600 mb-7">{error}</span>}
         </div>
         <label htmlFor="phoneNumber">Numéro de téléphone</label>
         <input
@@ -85,6 +87,9 @@ export default function Home() {
           </button>
         )}
       </form>
+
+      <b className="pb-2">Un produit de :</b>
+      <img src="/hob.jpg" alt="logo house of business" width={180} />
     </main>
   );
 }

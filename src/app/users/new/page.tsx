@@ -75,7 +75,9 @@ export default function Page() {
           >
             <option value="">--- Choisissez le role ---</option>
             <option value="Client">Client</option>
-          </select>
+            {user?.role === "Admin" && <><option value="Agent">Agent</option>
+            <option value="Admin">Admin</option></>}
+          </select> 
 
           <label htmlFor="firstname">Prénom</label>
           <input 

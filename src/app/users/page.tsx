@@ -47,7 +47,6 @@ export default function Page() {
   let usersData = null;
   if(user?.role && users) {
     const agentData = users?.filter((data: any) => data?.role === "Client");
-    console.log(agentData);
     if(user?.role === "Agent") {
       usersData = agentData;
     } else {
