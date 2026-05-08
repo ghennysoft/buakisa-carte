@@ -18,7 +18,7 @@ interface User {
 }
 
 export default function Page({params}: {params: {id: string}}) {
-  const { id } = React.use(params);
+  const { id } = params;
 
   const currentUser = JSON.parse(localStorage.getItem("user") || "");
 
