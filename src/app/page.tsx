@@ -46,27 +46,29 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center p-2 mt-6">
+    <main className="flex min-h-screen w-full flex-col items-center p-2 pt-6 bg-black">
       <form onSubmit={handleSubmit} className="w-full border-gray-500 p-7 m-2 rounded-xl">
         <div className="flex flex-col justify-center items-center">
-          <Wallet size={50} className="text-indigo-700" />
-          <h1 className="text-4xl font-bold text-indigo-700 text-center mb-5">B Carte</h1>
-          <span className="text-lg text-center mb-7">Connectez-vous</span>
+          <div className="flex items-center gap-2 mb-10">
+            <Wallet size={50} className="text-orange-400" />
+            <h1 className="text-4xl font-bold text-orange-400 text-center">B Carte</h1>
+          </div>
+          <span className="text-3xl text-center font-bold mb-7 text-white">Connectez-vous</span>
           {error && <span className="text-sm text-center text-red-600 mb-7">{error}</span>}
         </div>
-        <label htmlFor="phoneNumber">Numéro de téléphone</label>
+        <label className="text-white" htmlFor="phoneNumber">Numéro de téléphone</label>
         <input
           type="text"
           name="phoneNumber"
-          className="block p-2 my-3 rounded-xl mb-7 w-full border"
+          className="block p-2 my-3 rounded-xl mb-7 w-full border border-white"
           required
         />
 
-        <label htmlFor="password">Mot de passe</label>
+        <label className="text-white" htmlFor="password">Mot de passe</label>
         <input
           type="password"
           name="password"
-          className="block p-2 my-3 rounded-xl w-full border"
+          className="block p-2 my-3 rounded-xl w-full border border-white"
           required
         />
 
@@ -81,14 +83,13 @@ export default function Home() {
         ) : (
           <button
             type="submit"
-            className="block p-2 my-3 rounded-xl w-full border bg-indigo-700 text-white"
+            className="block p-2 my-3 rounded-xl w-full border bg-orange-400 text-white"
           >
             Se connecter
           </button>
         )}
       </form>
 
-      <b className="pb-2">Un produit de :</b>
       <img src="/hob.jpg" alt="logo house of business" width={180} />
     </main>
   );

@@ -144,7 +144,7 @@ export default function Page() {
               </button>
             : <button 
                 type="submit"
-                className="block p-2 my-4 rounded-xl w-full bg-indigo-700 text-white cursor-pointer"
+                className="block p-2 my-4 rounded-xl w-full bg-orange-400 text-white cursor-pointer"
               >
                 Créer l&apos;utilisateur
               </button>

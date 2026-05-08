@@ -1,25 +1,41 @@
+'use client'
+
 import Navbar from "@/components/Navbar";
-import prisma from "../../../lib/prisma";
 import { User } from "lucide-react";
 import { GoBackBtn } from "@/components/goback";
 import Footer from "@/components/Footer";
-import { currentUser } from "@/lib/currentUser";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 interface User {
   id: string;
   firstname: string;
   lastname: string;
+  phoneNumber: string;
+  gender: string;
+  role: string;
 }
 
-export default async function Page({params}: {params: {id: string}}) {
-  const { id } = await params;
+export default function Page({params}: {params: {id: string}}) {
+  const { id } = React.use(params);
 
-  const user = await prisma.user.findUnique({
-    where: { id },
-  });
+  const currentUser = JSON.parse(localStorage.getItem("user") || "");
 
-  if (!id || !user) return <p>Chargement de la carte...</p>;
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(()=>{
+      const getUser = async () => {
+        try {
+          const res = await axios.get(`/api/users/${id}`);
+          setUser(res?.data)
+        } catch (error) {
+          console.log(error)      
+        }
+      }
+      getUser();
+  }, [id]);
+
+  // if (!id || !user) return <p>Chargement de la carte...</p>;
 
   return (
     <div>
@@ -57,10 +73,10 @@ export default async function Page({params}: {params: {id: string}}) {
             </tbody>
           </table>
           {
-            user?.role === "Admin" && 
+            currentUser?.role === "Admin" && 
               <Link 
                 href={`/users/edit/${user?.id}`} 
-                className="w-2/3 py-2 px-5 my-10 text-center rounded-xl bg-indigo-700 text-white cursor-pointer"
+                className="w-2/3 py-2 px-5 my-10 text-center rounded-xl bg-orange-400 text-white cursor-pointer"
               >Modifier le profile</Link>
           }
         </div>

@@ -15,7 +15,7 @@ export async function GET(
   try {
     const data = await prisma.user.findUnique({ where: { id } });
     if (!data) {
-      return NextResponse.json({ error: "Contact introuvable" }, { status: 404 });
+      return NextResponse.json({ error: "User introuvable" }, { status: 404 });
     }
     return NextResponse.json(data, { status: 200 });
   } catch (error) {

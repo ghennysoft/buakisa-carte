@@ -38,21 +38,39 @@ export default function Page() {
         const res = await axios.get('/api/users');
         setUsers(res?.data)
       } catch (error) {
-        // console.log(error)      
+        // console.log(error) 
       }
     }
     getUsers();
   }, []);
 
+  const [term, setTerm] = useState("");
   let usersData = null;
   if(user?.role && users) {
-    const agentData = users?.filter((data: any) => data?.role === "Client");
-    if(user?.role === "Agent") {
-      usersData = agentData;
+    if(term){
+      if(user?.role === "Agent") {
+        usersData = users?.filter(data => data?.role === "Client")?.filter(user =>
+          user?.firstname?.toLowerCase()?.includes(term?.toLowerCase()) ||
+          user?.lastname?.toLowerCase()?.includes(term?.toLowerCase())
+        );
+      } else {
+        usersData = users?.filter(user =>
+          user?.firstname?.toLowerCase()?.includes(term?.toLowerCase()) ||
+          user?.lastname?.toLowerCase()?.includes(term?.toLowerCase())
+        );
+      }
     } else {
-      usersData = users;
+      const agentData = users?.filter(data => data?.role === "Client");
+      if(user?.role === "Agent") {
+        usersData = agentData;
+      } else {
+        usersData = users;
+      }
     }
   }
+
+  console.log({term})
+  console.log({usersData})  
 
   return (
     <div className="">
@@ -66,10 +84,19 @@ export default function Page() {
         </div>
 
         <div className="flex justify-between my-4">
-            <Link href={"/users/new"} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 hover:text-white transition-colors flex-1 justify-center">
+            <Link href={"/users/new"} className="border rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 hover:text-white transition-colors flex-1 justify-center">
                 <Plus />
                 <span>Créer un nouveau client</span>
             </Link>
+        </div>
+
+        <div className="flex justify-between my-4">
+            <input
+              type="text"
+              placeholder="Tapez le nom du client..."
+              className="border rounded-lg px-4 py-2 text-md flex-1" 
+              onChange={(e) => setTerm(e.target.value)}
+            />                
         </div>
 
         <div className="grid grid-cols-2 gap-2">

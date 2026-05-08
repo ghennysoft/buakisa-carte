@@ -72,7 +72,6 @@ export default function Home() {
             try {
                 const res = await axios.get('/api/mises');
 
-
                 const userMisesCDF = res?.data?.filter((data: any) => data?.user?.id === user?.id)?.filter((data: any) => data?.card?.retired === false)?.filter((data: any) => data?.card?.devise === "CDF");
                 console.log(userMisesCDF);
                 let mySoldeCDF=0;
@@ -95,8 +94,6 @@ export default function Home() {
         }
         getSolde();
     }, [user?.id, user?.role]);
-
-
 
     if(user?.role === "Admin") {
         return (
@@ -173,7 +170,7 @@ export default function Home() {
                         <div className="px-4 mt-6">
                             <div className="flex justify-between items-center mb-3">
                                 <h3 className="font-bold text-lg">Transactions récentes</h3>
-                                <button className="text-indigo-600 text-sm font-medium">Voir tout</button>
+                                <Link href={'/history'} className="text-indigo-600 text-sm font-medium">Voir tout</Link>
                             </div>
                             
                             <div className="space-y-3">
@@ -185,7 +182,9 @@ export default function Home() {
                                             </div>
                                             <div className="flex-1">
                                                 <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
-                                                <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
+                                                <p className="text-xs text-gray-500">
+                                                    Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                                </p>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
@@ -290,7 +289,9 @@ export default function Home() {
                                             </div>
                                             <div className="flex-1">
                                                 <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
-                                                <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
+                                                <p className="text-xs text-gray-500">
+                                                    Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                                </p>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
@@ -309,88 +310,89 @@ export default function Home() {
     
     return (
         <div className="">  
-        <div className="font-sans antialiased text-gray-800">
-            <Navbar />
+            <div className="font-sans antialiased text-gray-800">
+                <Navbar />
 
-            <main className="container lg:px-40 mb-10">
-                <div id="appContent" className="px-4 pt-4">
-                    <div className="flex justify-between items-start">
-                        <div>
-                            <p className="text-sm opacity-80">Solde disponible</p>
-                            <h2 className="text-3xl font-bold mt-1">{soldeCDF}Fc</h2>
+                <main className="container lg:px-40 mb-10">
+                    <div id="appContent" className="px-4 pt-4">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm opacity-80">Solde disponible</p>
+                                <h2 className="text-3xl font-bold mt-1">{soldeCDF}Fc</h2>
+                            </div>
+                            <button className="bg-white/20 rounded-full p-2 hover:bg-white/30">
+                                <i className="fas fa-ellipsis-h"></i>
+                            </button>
                         </div>
-                        <button className="bg-white/20 rounded-full p-2 hover:bg-white/30">
-                            <i className="fas fa-ellipsis-h"></i>
-                        </button>
-                    </div>
-                    <div className="flex justify-between mt-6 gap-2">
-                        <button className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 transition-colors flex-1 justify-center">
-                            <i className="fas fa-plus"></i>
-                            <span>Demander un retrait</span>
-                        </button>
-                        <Link href={"/history"} className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 transition-colors flex-1 justify-center">
-                            <i className="fas fa-history"></i>
-                            <span>Historique</span>
-                        </Link>
-                    </div>
+                        <div className="flex justify-between mt-6 gap-2">
+                            <button className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 transition-colors flex-1 justify-center">
+                                <i className="fas fa-plus"></i>
+                                <span>Demander un retrait</span>
+                            </button>
+                            <Link href={"/history"} className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 transition-colors flex-1 justify-center">
+                                <i className="fas fa-history"></i>
+                                <span>Historique</span>
+                            </Link>
+                        </div>
 
-                    <div className="grid grid-cols-3 gap-4 mt-5" id="serviceCategories">
-                        <Link href={`/users/${user?.id}`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-2">
-                                <User />
-                            </div>
-                            <span className="text-xs font-medium text-center">Profile</span>
-                        </Link>
-                        
-                        <Link href={`/history`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2">
-                                <History />
-                            </div>
-                            <span className="text-xs font-medium text-center">Historiques</span>
-                        </Link>
-
-                        <Link href={``} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
-                            <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
-                                <BadgeInfo />
-                            </div>
-                            <span className="text-xs font-medium text-center">A propos</span>
-                        </Link>
-                    </div>
-                    
-                    <div id="subOptionsContainer" className="hidden mt-4 border-t pt-4">
-                        <h4 id="subOptionsTitle" className="font-medium mb-3 text-indigo-600"></h4>
-                        <div id="subOptionsContent" className="grid grid-cols-3 gap-3"></div>
-                    </div>
-                </div>
-
-                <div className="px-4 mt-6">
-                    <div className="flex justify-between items-center mb-3">
-                        <h3 className="font-bold text-lg">Transactions récentes</h3>
-                        <Link href={"/history"} className="text-indigo-600 text-sm font-medium">Voir tout</Link>
-                    </div>
-                    
-                    <div className="space-y-3">
-                        {
-                            mises?.map(mise=>(
-                                <div key={mise?.id} className="flex items-center p-2 hover:bg-gray-200 rounded-lg">
-                                    <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
-                                        <SquareDotIcon />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
-                                        <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
-                                        {/* <p className="text-xs text-gray-500">{mise?.createdBy}</p> */}
-                                    </div>
+                        <div className="grid grid-cols-3 gap-4 mt-5" id="serviceCategories">
+                            <Link href={`/users/${user?.id}`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
+                                <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-2">
+                                    <User />
                                 </div>
-                            ))
-                        }
+                                <span className="text-xs font-medium text-center">Profile</span>
+                            </Link>
+                            
+                            <Link href={`/history`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
+                                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2">
+                                    <History />
+                                </div>
+                                <span className="text-xs font-medium text-center">Historiques</span>
+                            </Link>
+
+                            <Link href={``} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
+                                <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
+                                    <BadgeInfo />
+                                </div>
+                                <span className="text-xs font-medium text-center">A propos</span>
+                            </Link>
+                        </div>
+                        
+                        <div id="subOptionsContainer" className="hidden mt-4 border-t pt-4">
+                            <h4 id="subOptionsTitle" className="font-medium mb-3 text-indigo-600"></h4>
+                            <div id="subOptionsContent" className="grid grid-cols-3 gap-3"></div>
+                        </div>
                     </div>
-                </div>
-            </main>
-        </div>
+
+                    <div className="px-4 mt-6">
+                        <div className="flex justify-between items-center mb-3">
+                            <h3 className="font-bold text-lg">Transactions récentes</h3>
+                            <Link href={"/history"} className="text-indigo-600 text-sm font-medium">Voir tout</Link>
+                        </div>
+                        
+                        <div className="space-y-3">
+                            {
+                                mises?.map(mise=>(
+                                    <div key={mise?.id} className="flex items-center p-2 hover:bg-gray-200 rounded-lg">
+                                        <div className="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
+                                            <SquareDotIcon />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
+                                            <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-xs text-gray-500">
+                                                Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
     );
 }

@@ -49,7 +49,7 @@ export default function Page() {
         </div>
 
         <div className="flex justify-between my-4">
-            <Link href={"/cards/new"} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-indigo-700 hover:text-white transition-colors flex-1 justify-center">
+            <Link href={"/cards/new"} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 hover:text-white transition-colors flex-1 justify-center">
                 <Plus />
                 <span>Créer un nouvelle carte</span>
             </Link>

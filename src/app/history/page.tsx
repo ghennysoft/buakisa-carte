@@ -90,7 +90,9 @@ export default function Home() {
                                             </div>
                                             <div className="flex-1">
                                                 <h4 className="font-medium">{mise?.user?.firstname} {mise?.user?.lastname}</h4>
-                                                <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
+                                                <p className="text-xs text-gray-500">
+                                                    Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                                </p>
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
@@ -135,8 +137,9 @@ export default function Home() {
                                                 <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
                                             </div>
                                             <div className="text-right">
-                                                <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
-                                                {/* <p className="text-xs text-gray-500">{mise?.createdBy}</p> */}
+                                                <p className="text-xs text-gray-500">
+                                                    Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                                </p>
                                             </div>
                                         </div>
                                     ))
@@ -175,8 +178,9 @@ export default function Home() {
                                             <p className="text-xs text-gray-500">Le {String(new Date(mise?.createdAt).toLocaleDateString())}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-lg font-medium">{mise?.montant}{mise?.card?.devise === "USD" ? "$" : "Fc"}</p>
-                                            {/* <p className="text-xs text-gray-500">{mise?.createdBy}</p> */}
+                                            <p className="text-xs text-gray-500">
+                                                Le {String(new Date(mise?.createdAt).toLocaleDateString())} {String(new Date(mise?.createdAt).toLocaleTimeString())}
+                                            </p>
                                         </div>
                                     </div>
                                 ))
