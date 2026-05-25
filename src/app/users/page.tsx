@@ -38,7 +38,7 @@ export default function Page() {
         const res = await axios.get('/api/users');
         setUsers(res?.data)
       } catch (error) {
-        // console.log(error) 
+        console.log(error);
       }
     }
     getUsers();

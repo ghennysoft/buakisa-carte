@@ -771,9 +771,8 @@ export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeo
 export const CardScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  completed: 'completed',
-  retired: 'retired',
   devise: 'devise',
+  state: 'state',
   montant: 'montant',
   maxDays: 'maxDays',
   createdBy: 'createdBy',
@@ -856,13 +855,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'Devise'
  */
 export type EnumDeviseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Devise'>
@@ -873,6 +865,20 @@ export type EnumDeviseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Devise[]'
  */
 export type ListEnumDeviseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Devise[]'>
+    
+
+
+/**
+ * Reference to a field of type 'State'
+ */
+export type EnumStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'State'>
+    
+
+
+/**
+ * Reference to a field of type 'State[]'
+ */
+export type ListEnumStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'State[]'>
     
 
 

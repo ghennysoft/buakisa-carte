@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
 interface User {
   id: string;
@@ -17,10 +18,10 @@ interface User {
   role: string;
 }
 
-export default function Page({params}: {params: {id: string}}) {
-  const { id } = params;
+export default function Page() {
+  const { id } = useParams();
 
-  const currentUser = JSON.parse(localStorage.getItem("user") || "");
+  const currentUser = JSON.parse(window.localStorage.getItem("user") || "");
 
   const [user, setUser] = useState<User | null>(null);
   useEffect(()=>{

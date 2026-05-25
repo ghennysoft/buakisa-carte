@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import axios from "axios";
-import { BadgeInfo, CreditCard, History, SquareDotIcon, User, Users2 } from "lucide-react";
+import { BadgeInfo, CreditCard, History, SquareDotIcon, User, Users2, Minimize } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -116,6 +116,13 @@ export default function Home() {
                                         <CreditCard />
                                     </div>
                                     <span className="text-xs font-medium text-center">cartes</span>
+                                </Link>
+                                
+                                <Link href={"/cards"} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
+                                    <div className="w-12 h-12 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center mb-2">
+                                        <Minimize />
+                                    </div>
+                                    <span className="text-xs font-medium text-center">Retrait</span>
                                 </Link>
                                 
                                 <Link href={`/history`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
@@ -325,10 +332,6 @@ export default function Home() {
                             </button>
                         </div>
                         <div className="flex justify-between mt-6 gap-2">
-                            <button className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 transition-colors flex-1 justify-center">
-                                <i className="fas fa-plus"></i>
-                                <span>Demander un retrait</span>
-                            </button>
                             <Link href={"/history"} className="bg-indigo-600 text-white rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 transition-colors flex-1 justify-center">
                                 <i className="fas fa-history"></i>
                                 <span>Historique</span>
@@ -341,6 +344,13 @@ export default function Home() {
                                     <User />
                                 </div>
                                 <span className="text-xs font-medium text-center">Profile</span>
+                            </Link>
+                                
+                            <Link href={"/cards"} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">
+                                <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2">
+                                    <CreditCard />
+                                </div>
+                                <span className="text-xs font-medium text-center">cartes</span>
                             </Link>
                             
                             <Link href={`/history`} className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200">

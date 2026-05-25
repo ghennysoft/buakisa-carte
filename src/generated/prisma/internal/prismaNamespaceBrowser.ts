@@ -102,9 +102,8 @@ export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeo
 export const CardScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  completed: 'completed',
-  retired: 'retired',
   devise: 'devise',
+  state: 'state',
   montant: 'montant',
   maxDays: 'maxDays',
   createdBy: 'createdBy',

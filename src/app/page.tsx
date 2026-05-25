@@ -30,13 +30,12 @@ export default function Home() {
       const data = await res.json();
 
       if (res.ok) {
-        // console.log(data.message);
+        console.log(data);
         // tu peux stocker l’utilisateur dans localStorage si besoin
         localStorage.setItem("user", JSON.stringify(data.user));
         router.replace('/home');
       } else {
-        // alert(data.error);
-       setError(data.error);
+        setError(data.error);
       }
     } catch (error) {
       console.log(error);
@@ -60,7 +59,7 @@ export default function Home() {
         <input
           type="text"
           name="phoneNumber"
-          className="block p-2 my-3 rounded-xl mb-7 w-full border border-white"
+          className="block p-2 my-3 rounded-xl mb-7 w-full border border-white text-white"
           required
         />
 
@@ -68,7 +67,7 @@ export default function Home() {
         <input
           type="password"
           name="password"
-          className="block p-2 my-3 rounded-xl w-full border border-white"
+          className="block p-2 my-3 rounded-xl w-full border border-white text-white"
           required
         />
 

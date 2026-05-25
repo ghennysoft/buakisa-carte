@@ -32,3 +32,12 @@ export const Devise = {
 } as const
 
 export type Devise = (typeof Devise)[keyof typeof Devise]
+
+
+export const State = {
+  Open: 'Open',
+  Pending: 'Pending',
+  Closed: 'Closed'
+} as const
+
+export type State = (typeof State)[keyof typeof State]

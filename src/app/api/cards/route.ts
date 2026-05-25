@@ -5,11 +5,16 @@ import prisma from "../../../lib/prisma"
 // import { revalidatePath } from "next/cache";
 
 export async function GET() {
-  const cards = await prisma.card.findMany({
-    include: { user: true },
-    orderBy: { createdAt: "desc" },
-  });
-  return Response.json(cards);
+    try {
+        const cards = await prisma.card.findMany({
+            include: { user: true, mises: true },
+            orderBy: { createdAt: "desc" },
+        });
+        return NextResponse.json(cards, {status: 200});
+    } catch (error) {
+        // console.error(error);
+        return NextResponse.json({ error }, { status: 500 });
+    }
 }
 
 export async function POST(request: NextRequest) {

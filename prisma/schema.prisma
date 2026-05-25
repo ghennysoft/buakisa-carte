@@ -29,6 +29,12 @@ enum Devise {
   USD
 }
 
+enum State {
+  Open
+  Pending
+  Closed
+}
+
 model User {
   id          String   @id @default(uuid())
   firstname   String
@@ -61,9 +67,8 @@ model Card {
   id        String   @id @default(uuid())
   user      User     @relation(fields: [userId], references: [id])
   userId    String   @map("user_id")
-  completed Boolean @default(false)
-  retired   Boolean @default(false)
   devise    Devise   @default(CDF)
+  state     State    @default(Open)
   montant   Int
   maxDays   Int
   createdBy String

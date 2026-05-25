@@ -1,11 +1,13 @@
-// "use client";
+"use client";
 
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
-import prisma from "../../../lib/prisma";
 import { GoBackBtn } from "@/components/goback";
-import { Plus } from "lucide-react";
+import { Minimize, Plus } from "lucide-react";
 import Footer from "@/components/Footer";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface User {
   id: string;
@@ -18,7 +20,7 @@ interface Card {
   user: User;
   devise: string;
   montant: string;
-  maxDays: string;
+  maxDays: number;
   createdBy: User;
   mises: Mise[];
 }
@@ -31,15 +33,34 @@ interface Mise {
   createdAt: string;
 }
 
-export default async function Page({params}: {params: {id: string}}) {
-  const { id } = await params;
+export default function Page() {
+  const { id } = useParams();
+  
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(()=>{
+    const getUser = () => {
+      const user = localStorage.getItem("user");
+      if(user){
+        setUser(JSON.parse(user));
+      }
+    }
+    getUser();
+  }, [])
 
-  const card = await prisma.card.findUnique({
-      where: { id },
-      include: { user: true, mises: { include: { user: true } } },
-  });
+  const [card, setCard] = useState<Card | null>(null);
+  useEffect(()=>{
+      const getCard = async () => {
+        try {
+          const res = await axios.get(`/api/cards/${id}`);
+          setCard(res?.data)
+        } catch (error) {
+          console.log(error)      
+        }
+      }
+      getCard();
+  }, [id]);  
 
-  if (!id || !card) return <p>Chargement de la carte...</p>;
+  if (!id || !card || !user) return <p>Chargement de la carte...</p>;
 
   return (
     <div>
@@ -54,12 +75,32 @@ export default async function Page({params}: {params: {id: string}}) {
           </div>
         </div>
 
-        <div className="flex justify-between my-4">
-            <Link href={`/mises/new/${card?.id}/${card?.user?.id}`} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 hover:text-white transition-colors flex-1 justify-center">
-                <Plus />
-                <span>Ajouter un nouvelle mise</span>
-            </Link>
-        </div>
+        {
+          card?.maxDays > card?.mises?.length 
+          ? <div className="flex justify-between my-4">
+              {
+                user?.id === card?.user?.id
+                ? <Link href={`/mises/new/${card?.id}/${card?.user?.id}`} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 hover:text-white transition-colors flex-1 justify-center">
+                    <Minimize />
+                    <span>Demander un retrait</span>
+                  </Link>
+                : <Link href={`/mises/new/${card?.id}/${card?.user?.id}`} className="border border-indigo-600 text-indigo-600 rounded-lg px-4 py-2 text-sm flex items-center space-x-2 hover:bg-orange-400 hover:text-white transition-colors flex-1 justify-center">
+                    <Plus />
+                    <span>Ajouter un nouvelle mise</span>
+                  </Link>
+              }
+            </div>
+          : <div className="text-center text-green-600 p-2">
+              {
+                card?.user?.id === user?.id
+                ? <>
+                    <span>Votre carte est pleine, demandez un retrait</span>
+                    <button>Demander un retrait</button>
+                  </>
+                : <span>Cette carte est déjà pleine</span>
+              }
+            </div>
+        }
 
         {
           card?.mises?.length !== 0

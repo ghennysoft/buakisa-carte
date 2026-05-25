@@ -39,9 +39,8 @@ export type CardSumAggregateOutputType = {
 export type CardMinAggregateOutputType = {
   id: string | null
   userId: string | null
-  completed: boolean | null
-  retired: boolean | null
   devise: $Enums.Devise | null
+  state: $Enums.State | null
   montant: number | null
   maxDays: number | null
   createdBy: string | null
@@ -52,9 +51,8 @@ export type CardMinAggregateOutputType = {
 export type CardMaxAggregateOutputType = {
   id: string | null
   userId: string | null
-  completed: boolean | null
-  retired: boolean | null
   devise: $Enums.Devise | null
+  state: $Enums.State | null
   montant: number | null
   maxDays: number | null
   createdBy: string | null
@@ -65,9 +63,8 @@ export type CardMaxAggregateOutputType = {
 export type CardCountAggregateOutputType = {
   id: number
   userId: number
-  completed: number
-  retired: number
   devise: number
+  state: number
   montant: number
   maxDays: number
   createdBy: number
@@ -90,9 +87,8 @@ export type CardSumAggregateInputType = {
 export type CardMinAggregateInputType = {
   id?: true
   userId?: true
-  completed?: true
-  retired?: true
   devise?: true
+  state?: true
   montant?: true
   maxDays?: true
   createdBy?: true
@@ -103,9 +99,8 @@ export type CardMinAggregateInputType = {
 export type CardMaxAggregateInputType = {
   id?: true
   userId?: true
-  completed?: true
-  retired?: true
   devise?: true
+  state?: true
   montant?: true
   maxDays?: true
   createdBy?: true
@@ -116,9 +111,8 @@ export type CardMaxAggregateInputType = {
 export type CardCountAggregateInputType = {
   id?: true
   userId?: true
-  completed?: true
-  retired?: true
   devise?: true
+  state?: true
   montant?: true
   maxDays?: true
   createdBy?: true
@@ -216,9 +210,8 @@ export type CardGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type CardGroupByOutputType = {
   id: string
   userId: string
-  completed: boolean
-  retired: boolean
   devise: $Enums.Devise
+  state: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -252,9 +245,8 @@ export type CardWhereInput = {
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   id?: Prisma.StringFilter<"Card"> | string
   userId?: Prisma.StringFilter<"Card"> | string
-  completed?: Prisma.BoolFilter<"Card"> | boolean
-  retired?: Prisma.BoolFilter<"Card"> | boolean
   devise?: Prisma.EnumDeviseFilter<"Card"> | $Enums.Devise
+  state?: Prisma.EnumStateFilter<"Card"> | $Enums.State
   montant?: Prisma.IntFilter<"Card"> | number
   maxDays?: Prisma.IntFilter<"Card"> | number
   createdBy?: Prisma.StringFilter<"Card"> | string
@@ -267,9 +259,8 @@ export type CardWhereInput = {
 export type CardOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  retired?: Prisma.SortOrder
   devise?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   montant?: Prisma.SortOrder
   maxDays?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -285,9 +276,8 @@ export type CardWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CardWhereInput[]
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   userId?: Prisma.StringFilter<"Card"> | string
-  completed?: Prisma.BoolFilter<"Card"> | boolean
-  retired?: Prisma.BoolFilter<"Card"> | boolean
   devise?: Prisma.EnumDeviseFilter<"Card"> | $Enums.Devise
+  state?: Prisma.EnumStateFilter<"Card"> | $Enums.State
   montant?: Prisma.IntFilter<"Card"> | number
   maxDays?: Prisma.IntFilter<"Card"> | number
   createdBy?: Prisma.StringFilter<"Card"> | string
@@ -300,9 +290,8 @@ export type CardWhereUniqueInput = Prisma.AtLeast<{
 export type CardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  retired?: Prisma.SortOrder
   devise?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   montant?: Prisma.SortOrder
   maxDays?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -321,9 +310,8 @@ export type CardScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CardScalarWhereWithAggregatesInput | Prisma.CardScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Card"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Card"> | string
-  completed?: Prisma.BoolWithAggregatesFilter<"Card"> | boolean
-  retired?: Prisma.BoolWithAggregatesFilter<"Card"> | boolean
   devise?: Prisma.EnumDeviseWithAggregatesFilter<"Card"> | $Enums.Devise
+  state?: Prisma.EnumStateWithAggregatesFilter<"Card"> | $Enums.State
   montant?: Prisma.IntWithAggregatesFilter<"Card"> | number
   maxDays?: Prisma.IntWithAggregatesFilter<"Card"> | number
   createdBy?: Prisma.StringWithAggregatesFilter<"Card"> | string
@@ -333,9 +321,8 @@ export type CardScalarWhereWithAggregatesInput = {
 
 export type CardCreateInput = {
   id?: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -348,9 +335,8 @@ export type CardCreateInput = {
 export type CardUncheckedCreateInput = {
   id?: string
   userId: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -361,9 +347,8 @@ export type CardUncheckedCreateInput = {
 
 export type CardUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -376,9 +361,8 @@ export type CardUpdateInput = {
 export type CardUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -390,9 +374,8 @@ export type CardUncheckedUpdateInput = {
 export type CardCreateManyInput = {
   id?: string
   userId: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -402,9 +385,8 @@ export type CardCreateManyInput = {
 
 export type CardUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -415,9 +397,8 @@ export type CardUpdateManyMutationInput = {
 export type CardUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -438,9 +419,8 @@ export type CardOrderByRelationAggregateInput = {
 export type CardCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  retired?: Prisma.SortOrder
   devise?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   montant?: Prisma.SortOrder
   maxDays?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -456,9 +436,8 @@ export type CardAvgOrderByAggregateInput = {
 export type CardMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  retired?: Prisma.SortOrder
   devise?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   montant?: Prisma.SortOrder
   maxDays?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -469,9 +448,8 @@ export type CardMaxOrderByAggregateInput = {
 export type CardMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  retired?: Prisma.SortOrder
   devise?: Prisma.SortOrder
+  state?: Prisma.SortOrder
   montant?: Prisma.SortOrder
   maxDays?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -531,12 +509,12 @@ export type CardUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.CardScalarWhereInput | Prisma.CardScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type EnumDeviseFieldUpdateOperationsInput = {
   set?: $Enums.Devise
+}
+
+export type EnumStateFieldUpdateOperationsInput = {
+  set?: $Enums.State
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -563,9 +541,8 @@ export type CardUpdateOneRequiredWithoutMisesNestedInput = {
 
 export type CardCreateWithoutUserInput = {
   id?: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -576,9 +553,8 @@ export type CardCreateWithoutUserInput = {
 
 export type CardUncheckedCreateWithoutUserInput = {
   id?: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -619,9 +595,8 @@ export type CardScalarWhereInput = {
   NOT?: Prisma.CardScalarWhereInput | Prisma.CardScalarWhereInput[]
   id?: Prisma.StringFilter<"Card"> | string
   userId?: Prisma.StringFilter<"Card"> | string
-  completed?: Prisma.BoolFilter<"Card"> | boolean
-  retired?: Prisma.BoolFilter<"Card"> | boolean
   devise?: Prisma.EnumDeviseFilter<"Card"> | $Enums.Devise
+  state?: Prisma.EnumStateFilter<"Card"> | $Enums.State
   montant?: Prisma.IntFilter<"Card"> | number
   maxDays?: Prisma.IntFilter<"Card"> | number
   createdBy?: Prisma.StringFilter<"Card"> | string
@@ -631,9 +606,8 @@ export type CardScalarWhereInput = {
 
 export type CardCreateWithoutMisesInput = {
   id?: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -645,9 +619,8 @@ export type CardCreateWithoutMisesInput = {
 export type CardUncheckedCreateWithoutMisesInput = {
   id?: string
   userId: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -673,9 +646,8 @@ export type CardUpdateToOneWithWhereWithoutMisesInput = {
 
 export type CardUpdateWithoutMisesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -687,9 +659,8 @@ export type CardUpdateWithoutMisesInput = {
 export type CardUncheckedUpdateWithoutMisesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -699,9 +670,8 @@ export type CardUncheckedUpdateWithoutMisesInput = {
 
 export type CardCreateManyUserInput = {
   id?: string
-  completed?: boolean
-  retired?: boolean
   devise?: $Enums.Devise
+  state?: $Enums.State
   montant: number
   maxDays: number
   createdBy: string
@@ -711,9 +681,8 @@ export type CardCreateManyUserInput = {
 
 export type CardUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -724,9 +693,8 @@ export type CardUpdateWithoutUserInput = {
 
 export type CardUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -737,9 +705,8 @@ export type CardUncheckedUpdateWithoutUserInput = {
 
 export type CardUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  retired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   devise?: Prisma.EnumDeviseFieldUpdateOperationsInput | $Enums.Devise
+  state?: Prisma.EnumStateFieldUpdateOperationsInput | $Enums.State
   montant?: Prisma.IntFieldUpdateOperationsInput | number
   maxDays?: Prisma.IntFieldUpdateOperationsInput | number
   createdBy?: Prisma.StringFieldUpdateOperationsInput | string
@@ -781,9 +748,8 @@ export type CardCountOutputTypeCountMisesArgs<ExtArgs extends runtime.Types.Exte
 export type CardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  completed?: boolean
-  retired?: boolean
   devise?: boolean
+  state?: boolean
   montant?: boolean
   maxDays?: boolean
   createdBy?: boolean
@@ -797,9 +763,8 @@ export type CardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  completed?: boolean
-  retired?: boolean
   devise?: boolean
+  state?: boolean
   montant?: boolean
   maxDays?: boolean
   createdBy?: boolean
@@ -811,9 +776,8 @@ export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
-  completed?: boolean
-  retired?: boolean
   devise?: boolean
+  state?: boolean
   montant?: boolean
   maxDays?: boolean
   createdBy?: boolean
@@ -825,9 +789,8 @@ export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type CardSelectScalar = {
   id?: boolean
   userId?: boolean
-  completed?: boolean
-  retired?: boolean
   devise?: boolean
+  state?: boolean
   montant?: boolean
   maxDays?: boolean
   createdBy?: boolean
@@ -835,7 +798,7 @@ export type CardSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "completed" | "retired" | "devise" | "montant" | "maxDays" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["card"]>
+export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "devise" | "state" | "montant" | "maxDays" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["card"]>
 export type CardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   mises?: boolean | Prisma.Card$misesArgs<ExtArgs>
@@ -857,9 +820,8 @@ export type $CardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
-    completed: boolean
-    retired: boolean
     devise: $Enums.Devise
+    state: $Enums.State
     montant: number
     maxDays: number
     createdBy: string
@@ -1292,9 +1254,8 @@ export interface Prisma__CardClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface CardFieldRefs {
   readonly id: Prisma.FieldRef<"Card", 'String'>
   readonly userId: Prisma.FieldRef<"Card", 'String'>
-  readonly completed: Prisma.FieldRef<"Card", 'Boolean'>
-  readonly retired: Prisma.FieldRef<"Card", 'Boolean'>
   readonly devise: Prisma.FieldRef<"Card", 'Devise'>
+  readonly state: Prisma.FieldRef<"Card", 'State'>
   readonly montant: Prisma.FieldRef<"Card", 'Int'>
   readonly maxDays: Prisma.FieldRef<"Card", 'Int'>
   readonly createdBy: Prisma.FieldRef<"Card", 'String'>

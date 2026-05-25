@@ -11,14 +11,12 @@ interface User {
   id          : string,
   firstname   : string,
   lastname    : string,
-  role    : string,
+  role        : string,
 }
 
 export default function Page() {
   const [users, setUsers] = useState<User[]>([]);
-  console.log(users);
   const filtredUsers = users.filter(u => u.role === "Client");
-  console.log(filtredUsers);
 
   const [dataLoading, setDataLoading] = useState(false);
   const user = currentUser();
@@ -103,7 +101,7 @@ export default function Page() {
           >
             <option value="">--- Choisissez la devise ---</option>
             <option value="CDF">Fc</option>
-            <option value="DOL">Dollars</option>
+            <option value="USD">Dollars</option>
           </select>
 
           <label htmlFor="montant">Montant</label>
