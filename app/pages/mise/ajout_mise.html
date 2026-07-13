@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .progress-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#eac32c",
+                        "inverse-surface": "#2f3131",
+                        "surface-variant": "#e3e2e2",
+                        "on-primary-fixed": "#231b00",
+                        "surface-container-low": "#f4f3f3",
+                        "on-primary-fixed-variant": "#564500",
+                        "outline-variant": "#d0c6ad",
+                        "tertiary-container": "#dadad8",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "primary": "#725c00",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-container-high": "#e9e8e8",
+                        "secondary": "#5f5e5e",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#4d4634",
+                        "on-secondary-container": "#636262",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1a1c1c",
+                        "surface-bright": "#faf9f9",
+                        "outline": "#7f7661",
+                        "tertiary": "#5d5f5d",
+                        "surface": "#faf9f9",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-primary-container": "#725d00",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1b",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "primary-fixed": "#ffe07e",
+                        "secondary-container": "#e2dfde",
+                        "on-tertiary-container": "#5e5f5e",
+                        "tertiary-fixed-dim": "#c6c7c5",
+                        "on-tertiary-fixed-variant": "#454746",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#ffd640",
+                        "tertiary-fixed": "#e2e3e1",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f1f0f0",
+                        "surface-container": "#efeeed",
+                        "on-background": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#eac32c",
+                        "surface-dim": "#dadada",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#725c00",
+                        "on-secondary-fixed-variant": "#474746",
+                        "background": "#faf9f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "gutter": "12px",
+                        "xl": "48px",
+                        "base": "4px",
+                        "lg": "32px",
+                        "xs": "8px",
+                        "md": "24px",
+                        "container-margin": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="bg-background fixed top-0 w-full z-40 flex justify-between items-center px-container-margin py-xs">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-colors">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Finans</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary p-2" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young male professional named Akmal Nasrulloh, with a friendly expression, soft studio lighting, high-end photography style, against a clean neutral background, maintaining a premium corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT_d0kT_qlA_WjJOtcu1I37nUJSfSqQe8iJu_S4IeDmeWbX-8VFTWRbCrc58kFB8EdCvG5sian7o91QiMClSSFiOvV4MRzTXBHxuSMO9tQHIh_DzfFz6vbHz0cGYfL3TRUMcnS3FJ5C-zz8bdc5xywt1JBNYPYgEQriknUFvxbSr5bdBfpdy2vB7XMdqpkZDQ6DqHGoYIeeExHJW2RjrkfE9tMl7Sz4DzdKtblp7EBQXxQPmO5cZHaf1lxEWg9_aHHh0sRfV2a-jA"/>
+</div>
+</div>
+</header>
+<main class="mt-20 px-container-margin max-w-[540px] mx-auto">
+<!-- Section Header -->
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Mise d'épargne</h2>
+<p class="font-body-md text-on-surface-variant">Ajoutez des fonds à votre objectif d'épargne.</p>
+</div>
+<!-- Target Savings Card (Visual Context) -->
+<div class="bg-inverse-surface text-on-primary rounded-xl p-md mb-lg shadow-lg relative overflow-hidden">
+<!-- Decorative Pattern -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="flex justify-between items-start mb-md relative z-10">
+<div>
+<p class="font-label-md text-on-surface-variant text-surface-variant uppercase tracking-wider mb-1">Cible d'épargne</p>
+<h3 class="font-headline-sm text-headline-sm text-surface-bright">Achat Appartement</h3>
+</div>
+<div class="bg-primary-container/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="home_work">home_work</span>
+</div>
+</div>
+<div class="mb-sm relative z-10">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-display-lg text-display-lg text-surface-bright">45.000 €</span>
+<span class="font-label-md text-primary-fixed-dim mb-2">60% complété</span>
+</div>
+<div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim progress-fill" style="width: 60%"></div>
+</div>
+</div>
+<div class="flex justify-between text-surface-variant font-label-md relative z-10">
+<span>Objectif: 75.000 €</span>
+<span>Restant: 30.000 €</span>
+</div>
+</div>
+<!-- Form Section -->
+<section class="space-y-lg">
+<!-- Amount Input -->
+<div class="text-center py-md">
+<label class="font-label-md text-secondary mb-xs block" for="deposit-amount">Montant à déposer</label>
+<div class="relative inline-block w-full">
+<input class="w-full bg-transparent border-none text-center font-display-lg text-display-lg text-on-surface focus:ring-0 focus:outline-none placeholder-surface-container-highest" id="deposit-amount" placeholder="0.00" type="number" value="500"/>
+<div class="w-32 h-[2px] bg-primary-container mx-auto mt-1"></div>
+<span class="absolute right-0 bottom-4 font-headline-md text-secondary">€</span>
+</div>
+<p class="mt-base text-secondary font-label-sm">Suggéré basé sur vos paramètres</p>
+</div>
+<!-- Summary Chips -->
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-surface-container-low p-sm rounded-xl border border-outline-variant/30">
+<p class="font-label-sm text-secondary mb-xs">Nouvel État</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">45.500 €</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-xl border border-outline-variant/30">
+<p class="font-label-sm text-secondary mb-xs">Prochaine Échéance</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">01 Mai</p>
+</div>
+</div>
+<!-- Additional Options -->
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-sm glass-card rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="account_balance_wallet">account_balance_wallet</span>
+<div>
+<p class="font-label-md text-on-surface">Source de fonds</p>
+<p class="font-body-sm text-secondary">Compte Principal (**** 4290)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-sm glass-card rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="calendar_today">calendar_today</span>
+<div>
+<p class="font-label-md text-on-surface">Date du dépôt</p>
+<p class="font-body-sm text-secondary">Aujourd'hui, 24 Avril</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary">edit</span>
+</div>
+</div>
+<!-- Confirm Button -->
+<button class="w-full h-14 bg-primary-container text-on-primary-container font-bold rounded-xl shadow-lg active:scale-95 transition-all duration-100 flex items-center justify-center gap-2">
+<span>Confirmer le dépôt</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+<!-- Activity Summary (Bottom Section) -->
+<section class="mt-xl">
+<h4 class="font-label-md text-secondary uppercase tracking-widest mb-md">Derniers dépôts</h4>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-sm bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Mise mensuelle</p>
+<p class="font-label-sm text-secondary">15 Mars 2024</p>
+</div>
+</div>
+<span class="font-label-md text-primary font-bold">+ 500 €</span>
+</div>
+<div class="flex items-center justify-between p-sm bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm opacity-70">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="savings">savings</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Bonus exceptionnel</p>
+<p class="font-label-sm text-secondary">02 Mars 2024</p>
+</div>
+</div>
+<span class="font-label-md text-on-surface font-bold">+ 1.200 €</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-6 bg-surface-container-lowest shadow-lg border-t border-outline-variant rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-high transition-all px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-high transition-all px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-sm text-label-sm">Statistic</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-full px-2 py-1 active:scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-sm text-label-sm font-bold">Add</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-high transition-all px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-label-sm text-label-sm">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-high transition-all px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<span class="font-label-sm text-label-sm">Card</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for the amount input
+        const amountInput = document.getElementById('deposit-amount');
+        amountInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Limit width based on character count if needed, or simple feedback
+            if(value > 100000) {
+                amountInput.classList.add('text-error');
+            } else {
+                amountInput.classList.remove('text-error');
+            }
+        });
+
+        // Simple button active state handling
+        const confirmBtn = document.querySelector('button.bg-primary-container');
+        confirmBtn.addEventListener('click', function() {
+            this.innerHTML = '<span class="animate-spin material-symbols-outlined">sync</span>';
+            setTimeout(() => {
+                this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> <span>Succès!</span>';
+                this.classList.replace('bg-primary-container', 'bg-green-500');
+                this.classList.add('text-white');
+            }, 1200);
+        });
+    </script>
+</body></html>

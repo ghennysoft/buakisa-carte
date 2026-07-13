@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Détails de l'objectif</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed-dim": "#eac32c",
+                    "background": "#faf9f9",
+                    "tertiary-container": "#dadad8",
+                    "on-tertiary-fixed-variant": "#454746",
+                    "outline-variant": "#d0c6ad",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface-dim": "#dadada",
+                    "inverse-on-surface": "#f1f0f0",
+                    "surface": "#faf9f9",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#725c00",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1b",
+                    "secondary": "#5f5e5e",
+                    "surface-variant": "#e3e2e2",
+                    "on-primary-fixed-variant": "#564500",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-secondary-container": "#636262",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f4f3f3",
+                    "secondary-container": "#e2dfde",
+                    "on-tertiary-container": "#5e5f5e",
+                    "surface-bright": "#faf9f9",
+                    "on-surface": "#1a1c1c",
+                    "surface-container-highest": "#e3e2e2",
+                    "on-secondary-fixed-variant": "#474746",
+                    "primary-fixed": "#ffe07e",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c7c5",
+                    "outline": "#7f7661",
+                    "primary-container": "#ffd640",
+                    "on-surface-variant": "#4d4634",
+                    "inverse-primary": "#eac32c",
+                    "tertiary": "#5d5f5d",
+                    "on-background": "#1a1c1c",
+                    "tertiary-fixed": "#e2e3e1",
+                    "on-primary-fixed": "#231b00",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#725c00",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-container-high": "#e9e8e8",
+                    "surface-container": "#efeeed",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#725d00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "4xl": "2rem"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "sm": "16px",
+                    "gutter": "12px",
+                    "container-margin": "20px",
+                    "md": "24px",
+                    "lg": "32px",
+                    "xl": "48px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "14px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "26px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            },
+            "boxShadow": {
+                'neumorphic': '8px 8px 16px #e0dfdf, -8px -8px 16px #ffffff',
+                'neumorphic-inset': 'inset 8px 8px 16px #e0dfdf, inset -8px -8px 16px #ffffff',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f9;
+        }
+        .neumorphic-card {
+            border-radius: 2rem;
+            background: #faf9f9;
+            box-shadow:  8px 8px 16px #e0dfdf, -8px -8px 16px #ffffff;
+        }
+        .neumorphic-button {
+            border-radius: 2rem;
+            background: #faf9f9;
+            box-shadow:  5px 5px 10px #e0dfdf, -5px -5px 10px #ffffff;
+            transition: all 0.2s ease-in-out;
+        }
+        .neumorphic-button:active {
+            box-shadow: inset 5px 5px 10px #e0dfdf, inset -5px -5px 10px #ffffff;
+        }
+        .neumorphic-progress {
+            border-radius: 9999px;
+            background: #faf9f9;
+            box-shadow: inset 4px 4px 8px #e0dfdf, inset -4px -4px 8px #ffffff;
+        }
+        .neumorphic-circle {
+            border-radius: 50%;
+            background: #faf9f9;
+            box-shadow:  4px 4px 8px #e0dfdf, -4px -4px 8px #ffffff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface min-h-screen flex flex-col md:items-center">
+<!-- Mobile Container -->
+<div class="w-full max-w-[540px] min-h-screen flex flex-col relative pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-container-margin py-xs bg-background flat no shadows transition-colors duration-200 ease-in-out docked full-width top-0 z-10 sticky">
+<div class="flex items-center">
+<button class="w-10 h-10 flex items-center justify-center neumorphic-button mr-4">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Vacances</h1>
+<div class="flex items-center">
+<button class="w-10 h-10 flex items-center justify-center neumorphic-button">
+<span class="material-symbols-outlined text-on-surface">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 px-container-margin py-md flex flex-col gap-lg">
+<!-- Goal Card -->
+<section class="neumorphic-card p-6 flex flex-col items-center">
+<div class="w-16 h-16 neumorphic-circle flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2">Voyage à Bali</h2>
+<p class="font-display-lg text-display-lg text-on-surface font-bold mb-6">€1,250.00</p>
+<div class="w-full">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Progression</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Objectif: €2,000</span>
+</div>
+<div class="h-4 w-full neumorphic-progress overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full bg-primary-container rounded-full" style="width: 62.5%;"></div>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-label-sm text-label-sm text-primary">62.5% Atteint</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Il reste €750</span>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<section class="flex gap-4">
+<button class="flex-1 neumorphic-button py-4 px-4 flex flex-col items-center justify-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add</span>
+<span class="font-label-md text-label-md text-on-surface">Ajouter</span>
+</button>
+<button class="flex-1 neumorphic-button py-4 px-4 flex flex-col items-center justify-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">edit</span>
+<span class="font-label-md text-label-md text-on-surface">Modifier</span>
+</button>
+</section>
+<!-- Savings History -->
+<section class="flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface px-2">Historique d'épargne</h3>
+<div class="neumorphic-card p-4 flex flex-col gap-4">
+<!-- Transaction Item -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 neumorphic-circle flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Dépôt Automatique</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Aujourd'hui, 09:00</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-primary font-bold">+€50.00</p>
+</div>
+<!-- Divider -->
+<div class="w-full h-px bg-surface-variant"></div>
+<!-- Transaction Item -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 neumorphic-circle flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Ajout Manuel</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hier, 14:30</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-primary font-bold">+€100.00</p>
+</div>
+<!-- Divider -->
+<div class="w-full h-px bg-surface-variant"></div>
+<!-- Transaction Item -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 neumorphic-circle flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Dépôt Automatique</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">12 Oct, 09:00</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-primary font-bold">+€50.00</p>
+</div>
+</div>
+</section>
+<button class="neumorphic-button w-full py-4 mt-4 font-headline-sm text-headline-sm text-error flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">money_off</span>
+                Demander un retrait
+            </button>
+</main>
+</div>
+</body></html>

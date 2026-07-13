@@ -1,2 +1,0 @@
-export const DATABASE_URL="postgresql://postgres:123456@localhost:5432/carte"
-// export const DATABASE_URL="postgresql://postgres.gvkbuinyheojvelbtxfv:4s4RUI5MGbD7gj6Q@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
