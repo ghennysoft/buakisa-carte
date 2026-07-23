@@ -14,8 +14,17 @@ export interface SessionData {
   role: Role;
 }
 
+function toJwtPayload(session: SessionData): Record<string, unknown> {
+  return {
+    userId: session.userId,
+    email: session.email,
+    fullName: session.fullName,
+    role: session.role,
+  };
+}
+
 export async function signToken(payload: SessionData): Promise<string> {
-  return new SignJWT(payload as Record<string, unknown>)
+  return new SignJWT(toJwtPayload(payload))
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('7d')

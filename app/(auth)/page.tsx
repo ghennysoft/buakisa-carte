@@ -21,7 +21,9 @@ interface SavingsCard {
 
 interface Transaction {
   id: string;
+  card: {currency: string};
   amount: number;
+  currency: string;
   label: string;
   date: Date;
 }
@@ -89,9 +91,10 @@ export default function DashboardPage() {
         setMonthlyIncomeUSD(monthlyTotalUSD);
 
         // Recent transactions
-        const transactions: Transaction[] = depositsData.deposits.slice(0, 3).map((d: { id: string; amount: number; notes: string | null; createdAt: string; card: { name: string } }) => ({
+        const transactions: Transaction[] = depositsData.deposits.slice(0, 3).map((d: { id: string; amount: number; notes: string | null; createdAt: string; card: { name: string, currency: string } }) => ({
           id: d.id,
           amount: d.amount,
+          currency: d.card.currency,
           label: d.notes || 'Mise d\'epargne',
           date: new Date(d.createdAt),
         }));
@@ -191,7 +194,7 @@ export default function DashboardPage() {
           </Link>
         </div>
         <div className="flex gap-md overflow-x-auto hide-scrollbar -mx-container-margin px-container-margin pb-base">
-          {loading ? (
+          {loading && (
             <>
               {[1, 2].map((i) => (
                 <div key={i} className="min-w-50 bg-surface-container p-md rounded-xl animate-pulse">
@@ -202,18 +205,50 @@ export default function DashboardPage() {
                 </div>
               ))}
             </>
-          ) : cardsCDF.length === 0 ? (
+          )} 
+
+          {
+            cardsCDF.length === 0 && cardsCDF.length === 0 && (
             <div className="min-w-full bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30 text-center">
               <p className="font-body-md text-secondary">Aucune carte active</p>
-              <Link
-                href="/cards/create"
-                className="inline-block mt-sm text-primary font-label-md"
-              >
-                Creer une carte
-              </Link>
             </div>
-          ) : (
-            cardsCDF.map((card) => {
+          )}
+
+          {cardsCDF.length !== 0 &&  (
+              cardsCDF.map((card) => {
+                const progress = card.totalDays > 0 ? (card.daysCovered / card.totalDays) * 100 : 0;
+                const target = card.dailyAmount * card.totalDays;
+                return (
+                  <Link
+                    key={card.id}
+                    href={`/cards/${card.id}`}
+                    className="min-w-50 bg-surface-container-lowest p-md rounded-xl shadow-ambient border border-surface-container hover:bg-surface-container-low transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center mb-sm">
+                      <CreditCard className="w-5 h-5 text-primary" />
+                    </div>
+                    <p className="font-label-md text-label-md text-on-surface-variant truncate">
+                      {card.client?.fullName || 'Client'}
+                    </p>
+                    <p className="font-headline-sm text-headline-sm font-bold mb-xs">
+                      {formatCurrency(card.totalSaved, card.currency)}{' '}
+                      <span className="text-xs text-on-surface-variant font-normal">
+                        / {formatCurrency(target, card.currency)}
+                      </span>
+                    </p>
+                    <div className="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+                      <div
+                        className="bg-primary h-full transition-all"
+                        style={{ width: `${Math.min(progress, 100)}%` }}
+                      ></div>
+                    </div>
+                  </Link>
+                );
+              })
+          )}
+
+          {cardsUSD.length !== 0 && (
+            cardsUSD.map((card) => {
               const progress = card.totalDays > 0 ? (card.daysCovered / card.totalDays) * 100 : 0;
               const target = card.dailyAmount * card.totalDays;
               return (
@@ -252,7 +287,7 @@ export default function DashboardPage() {
         <div className="flex justify-between items-center">
           <h3 className="font-headline-sm text-headline-sm">Recent</h3>
           <Link href="/history" className="text-primary font-label-md text-label-md">
-            Voir l historique
+            Voir l&apos;historique
           </Link>
         </div>
         <div className="space-y-xs">
@@ -297,7 +332,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <p className="font-body-md text-body-md font-bold text-primary">
-                    + {formatCurrency(tx.amount, 'CDF')}
+                    + {tx.amount} {tx.currency}
                   </p>
                 </div>
               );

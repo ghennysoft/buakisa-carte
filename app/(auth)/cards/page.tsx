@@ -128,13 +128,13 @@ export default function CardsPage() {
         </div>
 
         {/* Add Button */}
-        <Link
+        {user?.role !== 'CLIENT' && (<Link
           href="/cards/create"
           className="flex items-center justify-center gap-2 w-full h-12 bg-primary-container text-on-primary-container font-label-md rounded-xl hover:bg-primary-fixed transition-colors"
         >
           <Plus className="w-5 h-5" />
           Creer une carte
-        </Link>
+        </Link>)}
 
         {/* Card List */}
         <div className="space-y-sm">

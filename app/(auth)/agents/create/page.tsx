@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/auth-provider';
 import { TopBar } from '@/components/top-bar';
 import { Info, CheckCircle } from 'lucide-react';
-import type { Role } from '@prisma/client';
+import type { Role } from '../../../../generated/prisma/client';
 
 export default function AgentCreatePage() {
   const { user, signUp } = useAuth();

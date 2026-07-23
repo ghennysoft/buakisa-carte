@@ -36,12 +36,6 @@ export default function SettingsPage() {
           href: '#',
         },
         {
-          icon: Users,
-          label: 'Clients',
-          description: 'Gerer vos clients',
-          href: '/clients',
-        },
-        {
           icon: CreditCard,
           label: 'Cartes',
           description: 'Voir les cartes d\'epargne',
@@ -49,7 +43,21 @@ export default function SettingsPage() {
         },
       ],
     },
-    ...(user?.role === 'ADMIN'
+    ...(user?.role !== 'CLIENT'
+      ? [
+          {
+            section: 'Client',
+            items: [
+              {
+                icon: Users,
+                label: 'Clients',
+                description: 'Gerer vos clients',
+                href: '/clients',
+              },
+            ],
+          },
+        ]
+      : []),...(user?.role === 'ADMIN'
       ? [
           {
             section: 'Administration',
@@ -156,7 +164,7 @@ export default function SettingsPage() {
         <button
           onClick={handleLogout}
           disabled={loading}
-          className="w-full h-14 bg-error-container text-on-error font-label-md rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50"
+          className="w-full h-14 bg-red-800 cursor-pointer text-on-error font-label-md rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50"
         >
           <LogOut className="w-5 h-5" />
           {loading ? 'Deconnexion...' : 'Se deconnecter'}

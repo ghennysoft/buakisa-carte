@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import type { Profile, Role } from '@prisma/client';
+import type { Profile, Role } from '../generated/prisma/client';
 import { authenticate as serverAuthenticate, register as serverRegister, clearSession as serverClearSession } from '@/lib/auth';
 
 interface AuthContextType {

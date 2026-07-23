@@ -14,11 +14,15 @@ export async function GET(
 
     const { id } = await params;
 
+    let whereData;
+    if(session.role !== 'CLIENT'){
+      whereData = { id, ...(session.role === 'ADMIN' ? {} : { createdById: session.userId }) }
+    } else {
+      whereData = { id, ...({ clientId: session.userId }) }
+    }
+
     const card = await prisma.savingsCard.findFirst({
-      where: {
-        id,
-        ...(session.role === 'ADMIN' ? {} : { createdById: session.userId }),
-      },
+      where: whereData,
       include: {
         client: {
           select: { id: true, fullName: true },

@@ -9,8 +9,15 @@ export async function GET() {
       return NextResponse.json({ error: 'Non autorise' }, { status: 401 });
     }
 
+    let whereData;
+    if(session.role !== 'CLIENT'){
+      whereData = session.role === 'ADMIN' ? {} : { createdById: session.userId }
+    } else {
+      whereData = { card: {clientId : session.userId} }
+    }
+
     const deposits = await prisma.deposit.findMany({
-      where: session.role === 'ADMIN' ? {} : { createdById: session.userId },
+      where: whereData,
       include: {
         card: {
           select: {

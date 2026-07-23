@@ -27,6 +27,7 @@ interface Card {
   totalDays: number;
   daysCovered: number;
   status: string;
+  clientId: string;
   client: { fullName: string } | null;
   deposits: Deposit[];
 }
@@ -75,7 +76,7 @@ export default function CardDetailPage() {
     setLoading(false);
   };
 
-  const formatCurrency = (amount: number, currency: string = 'EUR') => {
+  const formatCurrency = (amount: number, currency: string = 'CDF') => {
     return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency,
@@ -144,7 +145,7 @@ export default function CardDetailPage() {
   return (
     <>
       <TopBar
-        title={card.client?.fullName || 'Carte'}
+        title={`Carte de ${card.client?.fullName}` || 'Carte'}
         showBack
         rightAction={
           <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
@@ -223,7 +224,7 @@ export default function CardDetailPage() {
         </section>
 
         {/* Add Deposit Button */}
-        {canAddDeposit && (
+        {user?.role !== 'CLIENT' && canAddDeposit && (
           <Link
             href={`/cards/${card.id}/deposit`}
             className="w-full py-4 rounded-full bg-primary-container text-on-primary-container font-label-md flex justify-center items-center gap-2 shadow-primary hover:scale-[0.98] transition-all"
@@ -234,7 +235,7 @@ export default function CardDetailPage() {
         )}
 
         {/* Withdrawal Request Button */}
-        {card.status === 'ACTIVE' && card.totalSaved > 0 && (
+        {card?.clientId == user?.id && card.status === 'ACTIVE' && card.totalSaved > 0 && (
           <button
             onClick={handleWithdrawalRequest}
             disabled={withdrawalLoading}

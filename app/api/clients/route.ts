@@ -33,17 +33,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Le nom est requis' }, { status: 400 });
     }
 
-    const client = await prisma.client.create({
-      data: {
-        fullName,
-        email: email || null,
-        phone: phone || null,
-        address: address || null,
-        agentId: session.userId,
-      },
-    });
+    // const client = await prisma.client.create({
+    //   data: {
+    //     fullName,
+    //     email: email || null,
+    //     phone: phone || null,
+    //     address: address || null,
+    //     agentId: session.userId,
+    //   },
+    // });
 
-    return NextResponse.json({ client });
+    return NextResponse.json('client');
   } catch (error) {
     return NextResponse.json({ error: 'Erreur lors de la creation' }, { status: 500 });
   }
